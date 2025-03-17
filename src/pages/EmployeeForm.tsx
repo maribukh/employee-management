@@ -1,5 +1,4 @@
 import { useState } from "react";
-import employees from "../data/employees.json";
 import { Employee } from "../types";
 
 type EmployeeFormProps = {
@@ -28,13 +27,21 @@ const EmployeeForm = ({ onAddEmployee }: EmployeeFormProps) => {
     )
       return;
 
-    onAddEmployee({
-        name: formData.name,
-        age: Number(formData.age),
-        position: formData.position,
-        department: formData.department,
-        role: ""
-    });
+  onAddEmployee({
+    preferredFullName: formData.name,
+    jobTitleName: formData.position,
+    region: formData.department,
+    emailAddress: "",
+    phoneNumber: "",
+    userId: "",
+    employeeCode: "",
+    name: undefined,
+    age: undefined,
+    position: undefined,
+    department: undefined,
+    role: undefined
+  });
+
 
     setFormData({ name: "", age: "", position: "", department: "" });
   };

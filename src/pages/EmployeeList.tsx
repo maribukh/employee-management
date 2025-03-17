@@ -1,16 +1,15 @@
-import { useEffect, useState } from "react";
-import { Employee } from "../types";
-import "../styles.css"; 
+import { useState } from "react";
+import employeesData from "../data/employees.json"; 
+import "../styles.css";
 
 const EmployeeList = () => {
-  const [employees, setEmployees] = useState<Employee[]>([]);
-
-  useEffect(() => {
-    fetch("/data/employees.json")
-      .then((response) => response.json())
-      .then((data) => setEmployees(data))
-      .catch((error) => console.error("Error loading employees:", error));
-  }, []);
+  const [employees] = useState(
+    employeesData.Employees.map((emp) => ({
+      name: emp.preferredFullName, 
+      department: emp.region || "Unknown", 
+      role: emp.jobTitleName,
+    }))
+  );
 
   return (
     <div className="container">
