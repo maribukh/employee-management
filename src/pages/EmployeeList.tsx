@@ -1,22 +1,21 @@
 import { useEffect, useState } from "react";
 import { Employee } from "../types";
-import React from "react";
+import "../styles.css"; 
 
 const EmployeeList = () => {
   const [employees, setEmployees] = useState<Employee[]>([]);
 
-  // Load data from JSON file
   useEffect(() => {
     fetch("/data/employees.json")
       .then((response) => response.json())
       .then((data) => setEmployees(data))
-      .catch((error) => console.error("Error loading employee data:", error));
+      .catch((error) => console.error("Error loading employees:", error));
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <h1>Employee Management</h1>
-      <table border={1} cellPadding={10}>
+      <table>
         <thead>
           <tr>
             <th>Name</th>
