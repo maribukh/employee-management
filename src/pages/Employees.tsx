@@ -157,7 +157,7 @@ const Employees = () => {
                 {editingEmployee?.id === emp.id ? (
                   <input
                     type="text"
-                    value={editingEmployee?.name ?? ""} // Ensure value is never null/undefined
+                    value={editingEmployee?.name ?? ""} // ✅ Ensures it's always a string
                     onChange={(e) =>
                       setEditingEmployee({
                         ...editingEmployee!,

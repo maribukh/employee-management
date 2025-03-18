@@ -1,17 +1,8 @@
-import { ReactNode } from "react";
-
-export interface Employee {
-  role: ReactNode;
+export type Employee = {
   id: number;
-  name: ReactNode;
-  age: ReactNode;
-  position: ReactNode;
-  department: ReactNode;
-  userId: string;
-  jobTitleName: string;
-  preferredFullName: string; 
-  employeeCode: string;
-  region: string; 
-  phoneNumber: string;
-  emailAddress: string;
-}
+  name: string;
+  age: number;
+  position: string;
+  department: string;
+  role: string;
+};

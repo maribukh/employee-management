@@ -1,73 +1,127 @@
+/* Общие стили */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   background-color: #f4f4f4;
-  padding: 20px;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* Контейнер */
 .container {
-  max-width: 800px;
-  margin: auto;
-  background: white;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 40px auto;
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
 }
 
+/* Заголовок */
 h1 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
 }
 
+/* Управляющие элементы (поиск, фильтрация и добавление) */
 .controls {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 input,
 select,
 button {
-  padding: 10px;
+  padding: 12px;
   font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+input[type="text"] {
+  width: 48%;
 }
 
 button {
   background-color: #007BFF;
   color: white;
-  border: none;
   cursor: pointer;
+  border: none;
 }
 
 button:hover {
   background-color: #0056b3;
 }
 
+/* Таблица */
 table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
 }
 
 th,
 td {
-  border: 1px solid #ddd;
-  padding: 10px;
+  padding: 15px;
   text-align: left;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 th {
   background-color: #007BFF;
   color: white;
+  font-weight: 500;
+  letter-spacing: 1px;
 }
 
+td {
+  background-color: #fafafa;
+}
+
+/* Кнопка удаления */
 .delete-btn {
   background-color: #ff4d4d;
+  color: white;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
 }
 
 .delete-btn:hover {
   background-color: #b30000;
 }
 
-input[type="text"] {
-  width: 100%;
-  padding: 5px;
+/* Форма добавления нового сотрудника */
+input[type="text"],
+button[type="submit"] {
+  margin-bottom: 15px;
+}
+
+input[type="text"]:focus,
+button[type="submit"]:focus {
+  border-color: #007BFF;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.4);
+}
+
+button[type="submit"] {
+  background-color: #28a745;
+  color: white;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #218838;
+}
+
+button[type="submit"]:focus {
+  box-shadow: 0 0 5px rgba(40, 167, 69, 0.4);
 }

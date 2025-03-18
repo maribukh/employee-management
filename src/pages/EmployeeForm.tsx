@@ -33,13 +33,6 @@ const EmployeeForm = ({ onAddEmployee }: EmployeeFormProps) => {
       position: formData.position,
       department: formData.department,
       role: formData.position,
-      userId: "",
-      jobTitleName: "",
-      preferredFullName: "",
-      employeeCode: "",
-      region: "",
-      phoneNumber: "",
-      emailAddress: ""
     });
 
     setFormData({ name: "", age: "", position: "", department: "" });
