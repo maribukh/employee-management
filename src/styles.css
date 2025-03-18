@@ -1,127 +1,123 @@
-/* Общие стили */
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
+/* General reset and base styles */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Контейнер */
-.container {
-  max-width: 900px;
-  margin: 40px auto;
-  background-color: white;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
-}
-
-/* Заголовок */
-h1 {
-  text-align: center;
-  margin-bottom: 25px;
-  font-size: 2rem;
-  font-weight: 600;
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7fb;
   color: #333;
 }
 
-/* Управляющие элементы (поиск, фильтрация и добавление) */
-.controls {
-  display: flex;
-  justify-content: space-between;
+.container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+h1 {
+  text-align: center;
   margin-bottom: 20px;
+  font-size: 2rem;
+  color: #4a90e2;
 }
 
-input,
-select,
-button {
-  padding: 12px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-  outline: none;
-  transition: all 0.3s ease;
+h3 {
+  font-size: 1.2rem;
+  margin-top: 48px;
+  margin-bottom: 10px;
+  color: #4a90e2;
 }
 
+/* Input and button styling */
 input[type="text"] {
-  width: 48%;
+  width: 40%;
+  padding: 10px;
+  margin: 8px 0px;
+  margin-right: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #333;
 }
 
 button {
-  background-color: #007BFF;
+  padding: 10px 20px;
+  background-color: #4a90e2;
   color: white;
-  cursor: pointer;
   border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #357ab7;
 }
 
-/* Таблица */
+/* Table styles */
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  text-align: left;
 }
 
 th,
 td {
-  padding: 15px;
-  text-align: left;
-  border-bottom: 1px solid #f0f0f0;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
 }
 
 th {
-  background-color: #007BFF;
-  color: white;
-  font-weight: 500;
-  letter-spacing: 1px;
+  background-color: #f1f1f1;
+  font-weight: bold;
+  color: #4a90e2;
 }
 
 td {
   background-color: #fafafa;
 }
 
-/* Кнопка удаления */
-.delete-btn {
-  background-color: #ff4d4d;
-  color: white;
-  padding: 8px 12px;
-  font-size: 14px;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
+tr:hover {
+  background-color: #f9f9f9;
 }
 
-.delete-btn:hover {
-  background-color: #b30000;
+/* Styling for the no results row */
+td[colspan="3"] {
+  text-align: center;
+  color: #888;
+  padding: 20px 0;
 }
 
-/* Форма добавления нового сотрудника */
-input[type="text"],
-button[type="submit"] {
-  margin-bottom: 15px;
+div {
+  margin: 8px 0px;
 }
 
-input[type="text"]:focus,
-button[type="submit"]:focus {
-  border-color: #007BFF;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.4);
-}
+/* Additional styling for smaller screens */
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+    margin: 20px auto;
+  }
 
-button[type="submit"] {
-  background-color: #28a745;
-  color: white;
-  cursor: pointer;
-}
+  input[type="text"] {
+    font-size: 0.9rem;
+  }
 
-button[type="submit"]:hover {
-  background-color: #218838;
-}
+  button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
 
-button[type="submit"]:focus {
-  box-shadow: 0 0 5px rgba(40, 167, 69, 0.4);
+  table {
+    font-size: 0.9rem;
+  }
 }

@@ -1,13 +1,21 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import "../styles.css"; 
+// Define the type for an employee
+interface Employee {
+  name: string;
+  department: string;
+  role: string;
+}
 
-const LOCAL_STORAGE_KEY = "employeeList"; 
+const LOCAL_STORAGE_KEY = "employeeList";
 
 const EmployeeList = () => {
-  const [employees, setEmployees] = useState([]);
-  const [filteredEmployees, setFilteredEmployees] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [departmentFilter, setDepartmentFilter] = useState("");
-  const [newEmployee, setNewEmployee] = useState({
+  // Define types for the states
+  const [employees, setEmployees] = useState<Employee[]>([]);
+  const [filteredEmployees, setFilteredEmployees] = useState<Employee[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [departmentFilter, setDepartmentFilter] = useState<string>("");
+  const [newEmployee, setNewEmployee] = useState<Employee>({
     name: "",
     department: "",
     role: "",
@@ -16,10 +24,11 @@ const EmployeeList = () => {
   useEffect(() => {
     const storedEmployees = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (storedEmployees) {
-      setEmployees(JSON.parse(storedEmployees));
-      setFilteredEmployees(JSON.parse(storedEmployees));
+      const parsedEmployees: Employee[] = JSON.parse(storedEmployees);
+      setEmployees(parsedEmployees);
+      setFilteredEmployees(parsedEmployees);
     } else {
-      const defaultEmployees = [
+      const defaultEmployees: Employee[] = [
         { name: "Alice", department: "HR", role: "Manager" },
         { name: "Bob", department: "Engineering", role: "Developer" },
         { name: "Charlie", department: "Sales", role: "Representative" },
@@ -28,7 +37,6 @@ const EmployeeList = () => {
       setFilteredEmployees(defaultEmployees);
     }
   }, []);
-
 
   const handleAddEmployee = () => {
     if (!newEmployee.name || !newEmployee.department) {
@@ -40,12 +48,12 @@ const EmployeeList = () => {
     setEmployees(updatedEmployees);
     setFilteredEmployees(updatedEmployees);
 
-    // Сохраняем обновленный список в localStorage
+    // Save the updated list to localStorage
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedEmployees));
     setNewEmployee({ name: "", department: "", role: "" });
   };
 
-  // Функция для поиска сотрудников по имени
+  // Search function
   const handleSearch = () => {
     const results = employees.filter((employee) =>
       employee.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -53,7 +61,7 @@ const EmployeeList = () => {
     setFilteredEmployees(results);
   };
 
-  // Функция для фильтрации по отделу
+  // Filter by department function
   const handleFilterByDepartment = () => {
     if (departmentFilter === "") {
       setFilteredEmployees(employees);
@@ -67,7 +75,7 @@ const EmployeeList = () => {
     }
   };
 
-  // Функция для сортировки сотрудников по имени
+  // Sorting function
   const handleSort = () => {
     const sortedEmployees = [...filteredEmployees].sort((a, b) =>
       a.name.localeCompare(b.name)
@@ -79,7 +87,7 @@ const EmployeeList = () => {
     <div className="container">
       <h1>Employee Management</h1>
 
-      {/* Поиск по имени */}
+      {/* Search by name */}
       <div>
         <input
           type="text"
@@ -90,6 +98,7 @@ const EmployeeList = () => {
         <button onClick={handleSearch}>Search</button>
       </div>
 
+      {/* Filter by department */}
       <div>
         <input
           type="text"
@@ -100,10 +109,12 @@ const EmployeeList = () => {
         <button onClick={handleFilterByDepartment}>Filter</button>
       </div>
 
+      {/* Sort alphabetically */}
       <div>
         <button onClick={handleSort}>Sort Alphabetically</button>
       </div>
 
+      {/* Add new employee */}
       <div>
         <h3>Add New Employee</h3>
         <input
@@ -133,7 +144,7 @@ const EmployeeList = () => {
         <button onClick={handleAddEmployee}>Add Employee</button>
       </div>
 
-      {/* Список сотрудников */}
+      {/* Employee List */}
       <table>
         <thead>
           <tr>
@@ -153,7 +164,7 @@ const EmployeeList = () => {
             ))
           ) : (
             <tr>
-              <td colSpan="3">No match found</td>
+              <td colSpan={3}>No match found</td>
             </tr>
           )}
         </tbody>
