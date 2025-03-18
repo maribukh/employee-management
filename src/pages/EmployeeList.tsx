@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import "../styles.css";
 
-
 interface Employee {
   id: number;
   name: string;
@@ -17,7 +16,7 @@ const EmployeeList = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [departmentFilter, setDepartmentFilter] = useState<string>("");
   const [newEmployee, setNewEmployee] = useState<Employee>({
-    id: Date.now(), 
+    id: Date.now(),
     name: "",
     department: "",
     role: "",
@@ -28,18 +27,20 @@ const EmployeeList = () => {
 
     if (storedEmployees) {
       const parsedEmployees: Employee[] = JSON.parse(storedEmployees);
+      console.log("Stored Employees:", parsedEmployees);
       setEmployees(parsedEmployees);
       setFilteredEmployees(parsedEmployees);
     } else {
       fetch("/employees.json")
         .then((response) => response.json())
         .then((data: Employee[]) => {
+          console.log("Fetched Data:", data); 
           setEmployees(data);
           setFilteredEmployees(data);
-          localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data)); 
+          localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
         })
         .catch((error) => {
-          console.error("Error", error);
+          console.error("Error fetching employees:", error);
         });
     }
   }, []);
@@ -152,8 +153,8 @@ const EmployeeList = () => {
         </thead>
         <tbody>
           {filteredEmployees.length > 0 ? (
-            filteredEmployees.map((employee, index) => (
-              <tr key={index}>
+            filteredEmployees.map((employee) => (
+              <tr key={employee.id}>
                 <td>{employee.name}</td>
                 <td>{employee.department}</td>
                 <td>{employee.role}</td>
