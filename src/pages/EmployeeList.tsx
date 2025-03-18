@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import "../styles.css"; 
-// Define the type for an employee
+import "../styles.css";
+
+
 interface Employee {
+  id: number;
   name: string;
   department: string;
   role: string;
@@ -10,12 +12,12 @@ interface Employee {
 const LOCAL_STORAGE_KEY = "employeeList";
 
 const EmployeeList = () => {
-  // Define types for the states
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [filteredEmployees, setFilteredEmployees] = useState<Employee[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [departmentFilter, setDepartmentFilter] = useState<string>("");
   const [newEmployee, setNewEmployee] = useState<Employee>({
+    id: Date.now(), 
     name: "",
     department: "",
     role: "",
@@ -23,18 +25,22 @@ const EmployeeList = () => {
 
   useEffect(() => {
     const storedEmployees = localStorage.getItem(LOCAL_STORAGE_KEY);
+
     if (storedEmployees) {
       const parsedEmployees: Employee[] = JSON.parse(storedEmployees);
       setEmployees(parsedEmployees);
       setFilteredEmployees(parsedEmployees);
     } else {
-      const defaultEmployees: Employee[] = [
-        { name: "Alice", department: "HR", role: "Manager" },
-        { name: "Bob", department: "Engineering", role: "Developer" },
-        { name: "Charlie", department: "Sales", role: "Representative" },
-      ];
-      setEmployees(defaultEmployees);
-      setFilteredEmployees(defaultEmployees);
+      fetch("/employees.json")
+        .then((response) => response.json())
+        .then((data: Employee[]) => {
+          setEmployees(data);
+          setFilteredEmployees(data);
+          localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data)); 
+        })
+        .catch((error) => {
+          console.error("Error", error);
+        });
     }
   }, []);
 
@@ -48,12 +54,10 @@ const EmployeeList = () => {
     setEmployees(updatedEmployees);
     setFilteredEmployees(updatedEmployees);
 
-    // Save the updated list to localStorage
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedEmployees));
-    setNewEmployee({ name: "", department: "", role: "" });
+    setNewEmployee({ id: Date.now(), name: "", department: "", role: "" });
   };
 
-  // Search function
   const handleSearch = () => {
     const results = employees.filter((employee) =>
       employee.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -61,7 +65,6 @@ const EmployeeList = () => {
     setFilteredEmployees(results);
   };
 
-  // Filter by department function
   const handleFilterByDepartment = () => {
     if (departmentFilter === "") {
       setFilteredEmployees(employees);
@@ -75,7 +78,6 @@ const EmployeeList = () => {
     }
   };
 
-  // Sorting function
   const handleSort = () => {
     const sortedEmployees = [...filteredEmployees].sort((a, b) =>
       a.name.localeCompare(b.name)
@@ -87,7 +89,6 @@ const EmployeeList = () => {
     <div className="container">
       <h1>Employee Management</h1>
 
-      {/* Search by name */}
       <div>
         <input
           type="text"
@@ -98,7 +99,6 @@ const EmployeeList = () => {
         <button onClick={handleSearch}>Search</button>
       </div>
 
-      {/* Filter by department */}
       <div>
         <input
           type="text"
@@ -109,12 +109,10 @@ const EmployeeList = () => {
         <button onClick={handleFilterByDepartment}>Filter</button>
       </div>
 
-      {/* Sort alphabetically */}
       <div>
         <button onClick={handleSort}>Sort Alphabetically</button>
       </div>
 
-      {/* Add new employee */}
       <div>
         <h3>Add New Employee</h3>
         <input
@@ -144,7 +142,6 @@ const EmployeeList = () => {
         <button onClick={handleAddEmployee}>Add Employee</button>
       </div>
 
-      {/* Employee List */}
       <table>
         <thead>
           <tr>

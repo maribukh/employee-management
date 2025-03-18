@@ -141,12 +141,9 @@ const Employees = () => {
       <table>
         <thead>
           <tr>
-            <th>ID</th>
             <th>Name</th>
-            <th>Age</th>
             <th>Position</th>
             <th>Department</th>
-            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -157,7 +154,7 @@ const Employees = () => {
                 {editingEmployee?.id === emp.id ? (
                   <input
                     type="text"
-                    value={editingEmployee?.name ?? ""} // ✅ Ensures it's always a string
+                    value={editingEmployee?.name ?? ""} 
                     onChange={(e) =>
                       setEditingEmployee({
                         ...editingEmployee!,

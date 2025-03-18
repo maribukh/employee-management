@@ -1,37 +1,51 @@
 {
   "Employees": [
+    { "name": "Alice", "department": "HR", "role": "Manager" },
+    { "name": "Bob", "department": "Engineering", "role": "Developer" },
+    { "name": "Charlie", "department": "Sales", "role": "Representative" },
+    { "name": "David", "department": "Marketing", "role": "Coordinator" },
+    { "name": "Eve", "department": "Engineering", "role": "Software Engineer" },
+    { "name": "Frank", "department": "Sales", "role": "Account Executive" },
+    { "name": "Grace", "department": "HR", "role": "Recruiter" },
+    { "name": "Hannah", "department": "Finance", "role": "Analyst" },
+    { "name": "Ivy", "department": "Marketing", "role": "Content Specialist" },
+    { "name": "Jack", "department": "Engineering", "role": "Data Scientist" },
+    { "name": "Karen", "department": "Sales", "role": "Sales Manager" },
+    { "name": "Liam", "department": "Marketing", "role": "Digital Strategist" },
+    { "name": "Mona", "department": "Engineering", "role": "DevOps Engineer" },
+    { "name": "Nina", "department": "HR", "role": "HR Assistant" },
+    { "name": "Oscar", "department": "Sales", "role": "Customer Service" },
+    { "name": "Paul", "department": "Finance", "role": "Accountant" },
+    { "name": "Quinn", "department": "Engineering", "role": "Product Manager" },
     {
-      "userId": "rirani",
-      "jobTitleName": "Developer",
-      "firstName": "Romin",
-      "lastName": "Irani",
-      "preferredFullName": "Romin Irani",
-      "employeeCode": "E1",
-      "region": "CA",
-      "phoneNumber": "408-1234567",
-      "emailAddress": "romin.k.irani@gmail.com"
+      "name": "Rita",
+      "department": "Marketing",
+      "role": "Social Media Manager"
     },
     {
-      "userId": "nirani",
-      "jobTitleName": "Developer",
-      "firstName": "Neil",
-      "lastName": "Irani",
-      "preferredFullName": "Neil Irani",
-      "employeeCode": "E2",
-      "region": "CA",
-      "phoneNumber": "408-1111111",
-      "emailAddress": "neilrirani@gmail.com"
+      "name": "Steve",
+      "department": "Engineering",
+      "role": "Frontend Developer"
     },
+    { "name": "Tina", "department": "Sales", "role": "Business Development" },
+    { "name": "Uma", "department": "HR", "role": "HR Specialist" },
+    { "name": "Victor", "department": "Finance", "role": "CFO" },
+    { "name": "Wendy", "department": "Sales", "role": "Lead Generation" },
     {
-      "userId": "thanks",
-      "jobTitleName": "Program Director",
-      "firstName": "Tom",
-      "lastName": "Hanks",
-      "preferredFullName": "Tom Hanks",
-      "employeeCode": "E3",
-      "region": "CA",
-      "phoneNumber": "408-2222222",
-      "emailAddress": "tomhanks@gmail.com"
-    }
+      "name": "Xander",
+      "department": "Marketing",
+      "role": "Marketing Manager"
+    },
+    { "name": "Yara", "department": "Engineering", "role": "QA Tester" },
+    { "name": "Zach", "department": "Sales", "role": "Sales Coordinator" },
+    {
+      "name": "Aiden",
+      "department": "Engineering",
+      "role": "Backend Developer"
+    },
+    { "name": "Bella", "department": "HR", "role": "Employee Relations" },
+    { "name": "Carl", "department": "Finance", "role": "Financial Analyst" },
+    { "name": "Diana", "department": "Engineering", "role": "UI/UX Designer" },
+    { "name": "Eva", "department": "Marketing", "role": "SEO Specialist" }
   ]
 }
