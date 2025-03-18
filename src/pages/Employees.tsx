@@ -169,7 +169,6 @@ const Employees = () => {
                   emp.name
                 )}
               </td>
-              <td>{emp.age}</td>
               <td>{emp.position}</td>
               <td>{emp.department}</td>
               <td>
