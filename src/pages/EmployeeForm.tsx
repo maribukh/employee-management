@@ -27,27 +27,26 @@ const EmployeeForm = ({ onAddEmployee }: EmployeeFormProps) => {
     )
       return;
 
-  onAddEmployee({
-    preferredFullName: formData.name,
-    jobTitleName: formData.position,
-    region: formData.department,
-    emailAddress: "",
-    phoneNumber: "",
-    userId: "",
-    employeeCode: "",
-    name: undefined,
-    age: undefined,
-    position: undefined,
-    department: undefined,
-    role: undefined
-  });
-
+    onAddEmployee({
+      name: formData.name,
+      age: Number(formData.age), // Ensure age is stored as a number
+      position: formData.position,
+      department: formData.department,
+      role: formData.position,
+      userId: "",
+      jobTitleName: "",
+      preferredFullName: "",
+      employeeCode: "",
+      region: "",
+      phoneNumber: "",
+      emailAddress: ""
+    });
 
     setFormData({ name: "", age: "", position: "", department: "" });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
       <input
         type="text"
         name="name"

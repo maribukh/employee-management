@@ -3,6 +3,8 @@ import EmployeeForm from "../pages/EmployeeForm";
 import { getEmployees, addEmployee, deleteEmployee } from "../api/employees";
 import { Employee } from "../types";
 
+const LOCAL_STORAGE_KEY = "employeeData";
+
 const Employees = () => {
   const [employeeList, setEmployeeList] = useState<Employee[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -11,15 +13,29 @@ const Employees = () => {
   const [selectedDepartment, setSelectedDepartment] = useState("All");
   const [editingEmployee, setEditingEmployee] = useState<Employee | null>(null);
 
-  // Fetch employees from API
+  // Load employees from Local Storage or API
   useEffect(() => {
-    const fetchEmployees = async () => {
-      const data = await getEmployees();
-      setEmployeeList(data);
-      setFilteredEmployees(data);
-    };
-    fetchEmployees();
+    const storedEmployees = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (storedEmployees) {
+      setEmployeeList(JSON.parse(storedEmployees));
+      setFilteredEmployees(JSON.parse(storedEmployees));
+    } else {
+      fetchEmployees();
+    }
   }, []);
+
+  // Save employees to Local Storage whenever they change
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(employeeList));
+  }, [employeeList]);
+
+  // Fetch employees from API (only if Local Storage is empty)
+  const fetchEmployees = async () => {
+    const data = await getEmployees();
+    setEmployeeList(data);
+    setFilteredEmployees(data);
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
+  };
 
   // Search and Filter Function
   useEffect(() => {
@@ -49,16 +65,20 @@ const Employees = () => {
     setSortOrder(sortOrder === "asc" ? "desc" : "asc");
   };
 
-  // Add employee via API
+  // Add employee and update Local Storage
   const handleAddEmployee = async (newEmployee: Omit<Employee, "id">) => {
     const addedEmployee = await addEmployee(newEmployee);
-    setEmployeeList([...employeeList, addedEmployee]);
+    const updatedList = [...employeeList, addedEmployee];
+    setEmployeeList(updatedList);
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedList));
   };
 
-  // Delete employee via API
+  // Delete employee and update Local Storage
   const handleDeleteEmployee = async (id: number) => {
     await deleteEmployee(id);
-    setEmployeeList(employeeList.filter((emp) => emp.id !== id));
+    const updatedList = employeeList.filter((emp) => emp.id !== id);
+    setEmployeeList(updatedList);
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedList));
   };
 
   // Enable edit mode
@@ -69,11 +89,11 @@ const Employees = () => {
   // Handle edit form submission
   const handleSaveEdit = () => {
     if (editingEmployee) {
-      setEmployeeList(
-        employeeList.map((emp) =>
-          emp.id === editingEmployee.id ? editingEmployee : emp
-        )
+      const updatedList = employeeList.map((emp) =>
+        emp.id === editingEmployee.id ? editingEmployee : emp
       );
+      setEmployeeList(updatedList);
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedList));
       setEditingEmployee(null);
     }
   };
@@ -88,7 +108,10 @@ const Employees = () => {
     <div className="container">
       <h1>Employee Management</h1>
 
-      <EmployeeForm onAddEmployee={handleAddEmployee} />
+      {/* Ensure EmployeeForm is included properly */}
+      <div style={{ marginBottom: "20px" }}>
+        <EmployeeForm onAddEmployee={handleAddEmployee} />
+      </div>
 
       <div className="controls">
         <input
@@ -97,14 +120,15 @@ const Employees = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-
         <select
-          value={selectedDepartment || "All"}
+          value={String(selectedDepartment) || "All"} // Ensure it's always a string
           onChange={(e) => setSelectedDepartment(e.target.value)}
         >
           {departmentOptions.map((dept, index) => (
-            <option key={index} value={dept}>
-              {dept}
+            <option key={index} value={String(dept)}>
+              {" "}
+              {/* Ensure dept is always a string */}
+              {String(dept)}
             </option>
           ))}
         </select>
@@ -133,10 +157,10 @@ const Employees = () => {
                 {editingEmployee?.id === emp.id ? (
                   <input
                     type="text"
-                    value={editingEmployee.name ?? ""}
+                    value={editingEmployee?.name ?? ""} // Ensure value is never null/undefined
                     onChange={(e) =>
                       setEditingEmployee({
-                        ...editingEmployee,
+                        ...editingEmployee!,
                         name: e.target.value,
                       })
                     }
