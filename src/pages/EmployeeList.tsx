@@ -21,28 +21,36 @@ const EmployeeList = () => {
     department: "",
     role: "",
   });
-  useEffect(() => {
-    fetch("/employees.json")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to load data");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        if (data.Employees) {
-          setEmployees(data.Employees);
-          setFilteredEmployees(data.Employees);
-          localStorage.setItem(
-            LOCAL_STORAGE_KEY,
-            JSON.stringify(data.Employees)
-          );
-        }
-      })
-      .catch((error) => {
-        console.error("Error loading employees:", error);
-      });
-  }, []);
+ useEffect(() => {
+   const storedEmployees = localStorage.getItem(LOCAL_STORAGE_KEY);
+
+   if (storedEmployees) {
+     setEmployees(JSON.parse(storedEmployees));
+     setFilteredEmployees(JSON.parse(storedEmployees));
+   } else {
+     fetch("/employees.json")
+       .then((response) => {
+         if (!response.ok) {
+           throw new Error("Failed to load data");
+         }
+         return response.json();
+       })
+       .then((data) => {
+         if (data.Employees) {
+           setEmployees(data.Employees);
+           setFilteredEmployees(data.Employees);
+           localStorage.setItem(
+             LOCAL_STORAGE_KEY,
+             JSON.stringify(data.Employees)
+           );
+         }
+       })
+       .catch((error) => {
+         console.error("Error loading employees:", error);
+       });
+   }
+ }, []);
+
 
   const handleAddEmployee = () => {
     if (!newEmployee.name || !newEmployee.department) {
@@ -120,7 +128,7 @@ const EmployeeList = () => {
         <button onClick={handleSort}>Sort Alphabetically</button>
       </div>
 
-      <div>
+      <div className="newEmployee">
         <h3>Add New Employee</h3>
         <input
           type="text"

@@ -35,6 +35,16 @@ h3 {
   color: #4a90e2;
 }
 
+.newEmployee {
+  display: flex;
+  flex-direction: column;
+}
+
+.newEmployee button {
+  width: fit-content;
+  margin-top: 16px;
+}
+
 /* Input and button styling */
 input[type="text"] {
   width: 40%;
