@@ -21,28 +21,27 @@ const EmployeeList = () => {
     department: "",
     role: "",
   });
-
   useEffect(() => {
-    const storedEmployees = localStorage.getItem(LOCAL_STORAGE_KEY);
-
-    if (storedEmployees) {
-      const parsedEmployees: Employee[] = JSON.parse(storedEmployees);
-      console.log("Stored Employees:", parsedEmployees);
-      setEmployees(parsedEmployees);
-      setFilteredEmployees(parsedEmployees);
-    } else {
-      fetch("/employees.json")
-        .then((response) => response.json())
-        .then((data: Employee[]) => {
-          console.log("Fetched Data:", data); 
-          setEmployees(data);
-          setFilteredEmployees(data);
-          localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
-        })
-        .catch((error) => {
-          console.error("Error fetching employees:", error);
-        });
-    }
+    fetch("/employees.json")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to load data");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.Employees) {
+          setEmployees(data.Employees);
+          setFilteredEmployees(data.Employees);
+          localStorage.setItem(
+            LOCAL_STORAGE_KEY,
+            JSON.stringify(data.Employees)
+          );
+        }
+      })
+      .catch((error) => {
+        console.error("Error loading employees:", error);
+      });
   }, []);
 
   const handleAddEmployee = () => {
@@ -57,6 +56,13 @@ const EmployeeList = () => {
 
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedEmployees));
     setNewEmployee({ id: Date.now(), name: "", department: "", role: "" });
+  };
+
+  const handleDeleteEmployee = (id: number) => {
+    const updatedEmployees = employees.filter((employee) => employee.id !== id);
+    setEmployees(updatedEmployees);
+    setFilteredEmployees(updatedEmployees);
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedEmployees));
   };
 
   const handleSearch = () => {
@@ -149,6 +155,7 @@ const EmployeeList = () => {
             <th>Name</th>
             <th>Department</th>
             <th>Role</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -158,11 +165,16 @@ const EmployeeList = () => {
                 <td>{employee.name}</td>
                 <td>{employee.department}</td>
                 <td>{employee.role}</td>
+                <td>
+                  <button onClick={() => handleDeleteEmployee(employee.id)}>
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan={3}>No match found</td>
+              <td colSpan={4}>No match found</td>
             </tr>
           )}
         </tbody>

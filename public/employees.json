@@ -1,0 +1,239 @@
+{
+  "Employees": [
+    { "id": 1, "name": "Alice", "department": "HR", "role": "Manager" },
+    {
+      "id": 2,
+      "name": "Bob",
+      "department": "Engineering",
+      "role": "Developer"
+    },
+    {
+      "id": 3,
+      "name": "Charlie",
+      "department": "Finance",
+      "role": "Accountant"
+    },
+    { "id": 4, "name": "David", "department": "HR", "role": "Recruiter" },
+    {
+      "id": 5,
+      "name": "Emma",
+      "department": "Marketing",
+      "role": "SEO Specialist"
+    },
+    { "id": 6, "name": "Frank", "department": "IT", "role": "System Admin" },
+    {
+      "id": 7,
+      "name": "Grace",
+      "department": "Engineering",
+      "role": "Software Engineer"
+    },
+    { "id": 8, "name": "Alice", "department": "HR", "role": "HR Assistant" },
+    {
+      "id": 9,
+      "name": "Henry",
+      "department": "Finance",
+      "role": "Financial Analyst"
+    },
+    {
+      "id": 10,
+      "name": "Ivy",
+      "department": "Marketing",
+      "role": "Content Creator"
+    },
+    {
+      "id": 11,
+      "name": "Jack",
+      "department": "Engineering",
+      "role": "Frontend Developer"
+    },
+    {
+      "id": 12,
+      "name": "Kate",
+      "department": "Sales",
+      "role": "Sales Manager"
+    },
+    {
+      "id": 13,
+      "name": "Leo",
+      "department": "Support",
+      "role": "Customer Support"
+    },
+    { "id": 14, "name": "Mia", "department": "HR", "role": "HR Manager" },
+    {
+      "id": 15,
+      "name": "Nathan",
+      "department": "IT",
+      "role": "Network Engineer"
+    },
+    {
+      "id": 16,
+      "name": "Olivia",
+      "department": "Marketing",
+      "role": "Social Media Manager"
+    },
+    {
+      "id": 17,
+      "name": "Paul",
+      "department": "Engineering",
+      "role": "Backend Developer"
+    },
+    { "id": 18, "name": "Quinn", "department": "Finance", "role": "Auditor" },
+    {
+      "id": 19,
+      "name": "Ryan",
+      "department": "Support",
+      "role": "Technical Support"
+    },
+    {
+      "id": 20,
+      "name": "Sophia",
+      "department": "Sales",
+      "role": "Sales Representative"
+    },
+    {
+      "id": 21,
+      "name": "Tom",
+      "department": "Engineering",
+      "role": "DevOps Engineer"
+    },
+    { "id": 22, "name": "Alice", "department": "HR", "role": "HR Specialist" },
+    {
+      "id": 23,
+      "name": "Victor",
+      "department": "IT",
+      "role": "Database Administrator"
+    },
+    {
+      "id": 24,
+      "name": "Wendy",
+      "department": "Marketing",
+      "role": "PPC Specialist"
+    },
+    {
+      "id": 25,
+      "name": "Xavier",
+      "department": "Engineering",
+      "role": "QA Engineer"
+    },
+    {
+      "id": 26,
+      "name": "Yvonne",
+      "department": "Sales",
+      "role": "Account Manager"
+    },
+    { "id": 27, "name": "Zack", "department": "Finance", "role": "Auditor" },
+    { "id": 28, "name": "Alice", "department": "HR", "role": "HR Generalist" },
+    { "id": 29, "name": "Bob", "department": "IT", "role": "IT Support" },
+    {
+      "id": 30,
+      "name": "Charlie",
+      "department": "Engineering",
+      "role": "Software Developer"
+    },
+    {
+      "id": 31,
+      "name": "David",
+      "department": "Sales",
+      "role": "Sales Consultant"
+    },
+    {
+      "id": 32,
+      "name": "Emma",
+      "department": "Finance",
+      "role": "Investment Analyst"
+    },
+    {
+      "id": 33,
+      "name": "Frank",
+      "department": "HR",
+      "role": "Recruitment Lead"
+    },
+    {
+      "id": 34,
+      "name": "Grace",
+      "department": "Marketing",
+      "role": "Brand Manager"
+    },
+    {
+      "id": 35,
+      "name": "Henry",
+      "department": "IT",
+      "role": "Security Analyst"
+    },
+    {
+      "id": 36,
+      "name": "Ivy",
+      "department": "Support",
+      "role": "Help Desk Specialist"
+    },
+    {
+      "id": 37,
+      "name": "Jack",
+      "department": "Engineering",
+      "role": "AI Engineer"
+    },
+    { "id": 38, "name": "Kate", "department": "Finance", "role": "Bookkeeper" },
+    {
+      "id": 39,
+      "name": "Leo",
+      "department": "Engineering",
+      "role": "Mobile Developer"
+    },
+    { "id": 40, "name": "Mia", "department": "HR", "role": "HR Coordinator" },
+    {
+      "id": 41,
+      "name": "Nathan",
+      "department": "Support",
+      "role": "Tech Support Engineer"
+    },
+    { "id": 42, "name": "Olivia", "department": "IT", "role": "Data Engineer" },
+    {
+      "id": 43,
+      "name": "Paul",
+      "department": "Sales",
+      "role": "Sales Consultant"
+    },
+    {
+      "id": 44,
+      "name": "Quinn",
+      "department": "Marketing",
+      "role": "Digital Marketer"
+    },
+    {
+      "id": 45,
+      "name": "Ryan",
+      "department": "Engineering",
+      "role": "Embedded Developer"
+    },
+    {
+      "id": 46,
+      "name": "Sophia",
+      "department": "HR",
+      "role": "HR Business Partner"
+    },
+    {
+      "id": 47,
+      "name": "Tom",
+      "department": "Finance",
+      "role": "Financial Planner"
+    },
+    {
+      "id": 48,
+      "name": "Victor",
+      "department": "IT",
+      "role": "Cloud Engineer"
+    },
+    {
+      "id": 49,
+      "name": "Wendy",
+      "department": "Support",
+      "role": "Customer Success Manager"
+    },
+    {
+      "id": 50,
+      "name": "Xavier",
+      "department": "Sales",
+      "role": "Business Development Manager"
+    }
+  ]
+}
